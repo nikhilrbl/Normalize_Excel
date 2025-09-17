@@ -27,8 +27,17 @@ def create_hierarchical_json(ws, json_output_file, issues, start_version="", end
     try:
         last_row = get_last_row_with_value(ws)
         last_col = get_last_col_with_value(ws)
-        version_row=list(ws.iter_rows(min_row=2,max_row=2,min_col=4,max_col=last_col,values_only=True))[0]
+        # Get version row (row 2) from column 4 to last column
+        version_row = [
+            "" if v is None else str(v).strip()
+            for v in list(ws.iter_rows(
+                min_row=2, max_row=2,
+                min_col=4, max_col=last_col - 1,
+                values_only=True
+            ))[0]
+        ]
         data = {}
+
         # Find start column
         if start_version in (None, ""):
             start_col = 4
