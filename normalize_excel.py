@@ -8,6 +8,7 @@ from openpyxl.styles import Alignment, PatternFill
 from datetime import datetime
 import os
 import json
+import argparse
 
 # ================================
 # Color Definitions for Cell Fills
@@ -299,13 +300,31 @@ def processing_excel(*file_info):
 
 if __name__ == "__main__":
     # ======================
+    # Argument Parsing
+    # ======================
+    parser = argparse.ArgumentParser(
+        description="Normalize Excel sheets by unmerging merged cells, filling values, applying formatting, and saving the result.")
+    parser.add_argument("input_file", help="Input Excel file path (required)")
+    parser.add_argument("sheet_name", help="Target worksheet name (required)")
+    parser.add_argument("-o", "--output",
+                        help="Output Excel file path (optional, defaults to input_unmerged_output.xlsx)")
+    parser.add_argument("-s", "--start-version", default="",
+                        help="Start version for JSON creation (optional, defaults to beginning)")
+    parser.add_argument("-e", "--end-version", default="",
+                        help="End version for JSON creation (optional, defaults to end)")
+    parser.add_argument("-j", "--json", nargs="?", const=True,
+                        help="Export to JSON (optional). Use -j for default filename or -j filename.json for custom filename")
+
+    args = parser.parse_args()
+
+    # ======================
     # Script Configuration
     # ======================
-    input_file_name = "input.xlsx"  # Input Excel file path
-    sheet_name = "Node Version Planner"  # Target worksheet name
+    input_file_name = args.input_file  # Input Excel file path from argument
+    sheet_name = args.sheet_name  # Target worksheet name from argument
     # file_datetime=datetime.now().strftime("%d-%m-%Y_%H-%M-%S") # Example timestamp format
     # output_file_name= "unmerged_output_" + str(file_datetime) + ".xlsx"
-    output_file_name = f"{input_file_name.strip('.xlsx')}_unmerged_output.xlsx"  # Output Excel file path
+    output_file_name = args.output if args.output else f"{input_file_name.strip('.xlsx')}_unmerged_output.xlsx"  # Output Excel file path
     issues = {'merged_empty_cells': [],  # Track empty merged cell ranges
               'empty_cells_after_unmerge': [],  # Track empty cells found during processing
               'removed_header_rows': [],  # Track removed header row indices
@@ -323,12 +342,20 @@ if __name__ == "__main__":
             print("●", issue.upper(), ":\n", issues[issue])
             print("")
 
-        # Create hierarchical JSON from processed Excel data
-        json_output_file = f"{output_file_name.strip('.xlsx')}.json"
-        json_status = create_hierarchical_json(load_workbook(output_file_name)[sheet_name], json_output_file, issues)
-        if json_status:
-            print(f"✅ Output JSON created: '{json_output_file}'")
-        else:
-            print(f"❌ Failed to create JSON file")
+        # Create hierarchical JSON from processed Excel data (only if -j flag is provided)
+        if args.json:
+            if args.json is True:
+                # Default JSON filename
+                json_output_file = f"{output_file_name.strip('.xlsx')}.json"
+            else:
+                # Custom JSON filename provided
+                json_output_file = args.json
+
+            json_status = create_hierarchical_json(load_workbook(output_file_name)[sheet_name], json_output_file,
+                                                   issues, args.start_version, args.end_version)
+            if json_status:
+                print(f"✅ Output JSON created: '{json_output_file}'")
+            else:
+                print(f"❌ Failed to create JSON file")
     else:
         print(f"❌ Failed to process '{input_file_name}'")
