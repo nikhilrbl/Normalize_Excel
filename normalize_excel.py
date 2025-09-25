@@ -19,6 +19,27 @@ pink_fill = PatternFill(start_color="FFC0CB", end_color="FFC0CB", fill_type="sol
 orange_fill = PatternFill(start_color="FFA500", end_color="FFA500", fill_type="solid")  # Orange
 gray_fill = PatternFill(start_color="D3D3D3", end_color="D3D3D3", fill_type="solid")  # Gray
 
+
+def get_last_row_with_value(ws):
+    """Find the last row containing any non-empty value."""
+    for row in range(ws.max_row, 0, -1):  # Iterate backwards from max row
+        if any(cell.value not in (None, "") for cell in ws[row]):
+            logging.debug(f"Last row with value: {row}")
+            return row
+    logging.debug("No rows with values found")
+    return 0
+
+
+def get_last_col_with_value(ws):
+    """Find the last column containing any non-empty value."""
+    for col in range(ws.max_column, 0, -1):  # Iterate backwards from max column
+        if any(cell.value not in (None, "") for cell in ws[col]):
+            logging.debug(f"Last column with value: {col}")
+            return col
+    logging.debug("No columns with values found")
+    return 0
+
+
 def create_hierarchical_json(ws,
                              json_output_file,
                              skipped_rows_for_json,
@@ -137,72 +158,6 @@ def create_hierarchical_json(ws,
         logging.error(f"Function:{create_hierarchical_json.__name__}, Error: {str(e)}")
         return False
 
-def get_last_row_with_value(ws):
-    """Find the last row containing any non-empty value."""
-    for row in range(ws.max_row, 0, -1):  # Iterate backwards from max row
-        if any(cell.value not in (None, "") for cell in ws[row]):
-            logging.debug(f"Last row with value: {row}")
-            return row
-    logging.debug("No rows with values found")
-    return 0
-
-
-def get_last_col_with_value(ws):
-    """Find the last column containing any non-empty value."""
-    for col in range(ws.max_column, 0, -1):  # Iterate backwards from max column
-        if any(cell.value not in (None, "") for cell in ws[col]):
-            logging.debug(f"Last column with value: {col}")
-            return col
-    logging.debug("No columns with values found")
-    return 0
-
-
-def remove_node_header(ws, issues):
-    """Remove rows where all three main columns have identical values or empty node_type/node_version."""
-    logging.info("Starting node header removal")
-    last_row = get_last_row_with_value(ws)
-    for index in range(3, last_row + 1):
-        cell1 = ws.cell(row=index, column=1).value  # tech
-        cell2 = ws.cell(row=index, column=2).value  # node_type
-        cell3 = ws.cell(row=index, column=3).value  # node_version
-
-        # Delete row if all three values are identical or if node_type/node_version are empty
-        if (cell1 == cell2 == cell3) or (cell2 in (None, "") and cell3 in (None, "")):
-            issues['removed_header_rows'].append(index)
-            logging.debug(f"Removing header row {index}: tech='{cell1}', node_type='{cell2}', node_version='{cell3}'")
-            ws.delete_rows(index)
-    logging.info(f"Node header removal completed. Removed {len(issues['removed_header_rows'])} rows")
-    return True
-
-
-def highlight_empty_cell(ws, issues):
-    """Highlight empty cells in critical columns/rows with red fill."""
-    logging.info("Starting empty cell highlighting")
-    last_row = get_last_row_with_value(ws)
-
-    # Check columns 1, 2, 3 (tech, node_type, node_version) for empty cells
-    for col in (1, 2, 3):
-        for row in range(3, last_row + 1):
-            val = ws.cell(row=row, column=col).value
-            if val is None or str(val).strip() == "":
-                ws.cell(row=row, column=col).fill = red_fill
-                issues['empty_cells_after_unmerge'].append(ws.cell(row=row, column=col).coordinate)
-                logging.debug(f"Highlighted empty cell at {ws.cell(row=row, column=col).coordinate}")
-
-    # Check rows 1, 2 (headers) in version columns for empty cells
-    last_col = get_last_col_with_value(ws)
-    for row in (1, 2):
-        for col in range(4, last_col + 1):
-            val = ws.cell(row=row, column=col).value
-            if val is None or str(val).strip() == "":
-                ws.cell(row=row, column=col).fill = red_fill
-                issues['empty_cells_after_unmerge'].append(ws.cell(row=row, column=col).coordinate)
-                logging.debug(f"Highlighted empty header cell at {ws.cell(row=row, column=col).coordinate}")
-
-    logging.info(f"Empty cell highlighting completed. Highlighted {len(issues['empty_cells_after_unmerge'])} cells")
-    return True
-
-
 def formatting(ws):
     """Apply center alignment and text wrapping to all non-empty cells."""
     try:
@@ -224,6 +179,52 @@ def formatting(ws):
         print(f">> Function:{formatting.__name__}, Error processing file: {str(e)}")
         logging.error(f"Function:{formatting.__name__}, Error processing file: {str(e)}")
         return False
+
+
+# def remove_node_header(ws, issues):
+#     """Remove rows where all three main columns have identical values or empty node_type/node_version."""
+#     logging.info("Starting node header removal")
+#     last_row = get_last_row_with_value(ws)
+#     for index in range(3, last_row + 1):
+#         cell1 = ws.cell(row=index, column=1).value  # tech
+#         cell2 = ws.cell(row=index, column=2).value  # node_type
+#         cell3 = ws.cell(row=index, column=3).value  # node_version
+#
+#         # Delete row if all three values are identical or if node_type/node_version are empty
+#         if (cell1 == cell2 == cell3) or (cell2 in (None, "") and cell3 in (None, "")):
+#             issues['removed_header_rows'].append(index)
+#             logging.debug(f"Removing header row {index}: tech='{cell1}', node_type='{cell2}', node_version='{cell3}'")
+#             ws.delete_rows(index)
+#     logging.info(f"Node header removal completed. Removed {len(issues['removed_header_rows'])} rows")
+#     return True
+
+
+def highlight_empty_cell(ws, issues):
+    """Highlight empty cells in critical columns/rows with red fill."""
+    logging.info("Starting empty cell highlighting")
+    last_row = get_last_row_with_value(ws)
+
+    # Check rows 1, 2 (headers) in version columns for empty cells
+    last_col = get_last_col_with_value(ws)
+    for row in (2,):
+        for col in range(4, last_col + 1):
+            val = ws.cell(row=row, column=col).value
+            if val is None or str(val).strip() == "":
+                ws.cell(row=row, column=col).fill = red_fill
+                issues['empty_cell_in_enm_version_row2'].append(ws.cell(row=row, column=col).coordinate)
+                logging.debug(f"Highlighted empty ENM Version Row2 cell at {ws.cell(row=row, column=col).coordinate}")
+
+    # Check columns 1, 2, 3 (tech, node_type, node_version) for empty cells
+    for col in (1, 2, 3):
+        for row in range(3, last_row + 1):
+            val = ws.cell(row=row, column=col).value
+            if val is None or str(val).strip() == "":
+                ws.cell(row=row, column=col).fill = red_fill
+                issues['empty_cells_after_unmerge'].append(ws.cell(row=row, column=col).coordinate)
+                logging.debug(f"Highlighted empty cell at {ws.cell(row=row, column=col).coordinate}")
+
+    logging.info(f"Empty cell highlighting completed. Highlighted {len(issues['empty_cells_after_unmerge'])+len(issues['empty_cell_in_enm_version_row2'])} cells")
+    return True
 
 
 def unmerge_fill(ws, issues):
@@ -352,7 +353,7 @@ def processing_excel(*file_info):
         #     print(f">> Remove node header failed")
         #     logging.error("Node header removal failed")
         #     return False
-        #
+
         # Step 3: Highlight empty cells in critical columns and header rows
         highlight_empty_cell_status = highlight_empty_cell(ws, issues)
         if highlight_empty_cell_status:
@@ -470,6 +471,7 @@ if __name__ == "__main__":
                                         f"{os.path.basename(input_file_name).strip('.xlsx')}_normalized_output.xlsx")
 
     issues = {'merged_empty_cells': [],  # Track empty merged cell ranges
+              'empty_cell_in_enm_version_row2':[],
               'empty_cells_after_unmerge': [],  # Track empty cells found during processing
               'removed_header_rows': []}  # Track removed header row indices
     skipped_rows_for_json=[]
