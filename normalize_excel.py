@@ -471,8 +471,7 @@ if __name__ == "__main__":
 
     issues = {'merged_empty_cells': [],  # Track empty merged cell ranges
               'empty_cells_after_unmerge': [],  # Track empty cells found during processing
-              'removed_header_rows': [],  # Track removed header row indices
-              'skipped_incomplete_rows_for_json_creation': [],}  # Track skipped rows during JSON creation
+              'removed_header_rows': []}  # Track removed header row indices
     skipped_rows_for_json=[]
 
     # Run main processing pipeline for the Excel file
