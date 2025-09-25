@@ -1,7 +1,6 @@
-# Project: Normalize Excel
-# Description: Script to process Excel sheets by unmerging merged cells,
-#              filling values, applying formatting, and saving the result.
-# Author: EHCIKNA
+# Project: Node Details Parser
+# Description: To parse node details from a node details excel and convert into a json file
+# Author: EIMACAH
 
 from openpyxl import load_workbook
 from openpyxl.styles import Alignment, PatternFill
@@ -14,27 +13,28 @@ import logging
 # ================================
 # Color Definitions for Cell Fills
 # ================================
-# These colors can be applied to highlight issues or mark cells.
 red_fill = PatternFill(start_color="FF0000", end_color="FF0000", fill_type="solid")  # Red
-green_fill = PatternFill(start_color="00FF00", end_color="00FF00", fill_type="solid")  # Green
-blue_fill = PatternFill(start_color="0000FF", end_color="0000FF", fill_type="solid")  # Blue
 yellow_fill = PatternFill(start_color="FFFF00", end_color="FFFF00", fill_type="solid")  # Yellow
 pink_fill = PatternFill(start_color="FFC0CB", end_color="FFC0CB", fill_type="solid")  # Pink
-# Extra optional colors
 orange_fill = PatternFill(start_color="FFA500", end_color="FFA500", fill_type="solid")  # Orange
-purple_fill = PatternFill(start_color="800080", end_color="800080", fill_type="solid")  # Purple
 gray_fill = PatternFill(start_color="D3D3D3", end_color="D3D3D3", fill_type="solid")  # Gray
 
-
-def create_hierarchical_json(ws, json_output_file, issues, start_version="", end_version=""):
+def create_hierarchical_json(ws,
+                             json_output_file,
+                             skipped_rows_for_json,
+                             start_version="",
+                             end_version=""
+                             ):
     """
     Create hierarchical JSON from worksheet data between specified version columns.
-    Structure: tech -> nodetype -> nodename -> [supported_versions]
+    Structure: tech -> node_type -> node_version -> [supported_versions]
     """
     try:
         logging.info(f"Starting JSON creation for file: {json_output_file}")
         last_row = get_last_row_with_value(ws)
         last_col = get_last_col_with_value(ws)
+        data = {}
+
         # Get version row (row 2) from column 4 to last column
         version_row = [
             "" if v is None else str(v).strip()
@@ -44,9 +44,17 @@ def create_hierarchical_json(ws, json_output_file, issues, start_version="", end
                 values_only=True
             ))[0]
         ]
-        data = {}
         # print(version_row)
         # logging.debug(f"Version row extracted: {version_row}")
+
+        # Check if any empty ENM Version cell in Row2
+        if (
+                None in version_row or
+                "" in version_row
+        ):
+            print(f">> Error: ENM Version Row2 has some 'None' or '' value")
+            logging.error(f">> Error: ENM Version Row2 has some 'None' or '' value")
+            return False
 
         # Find start column index based on start_version
         if start_version in (None, ""):
@@ -63,11 +71,11 @@ def create_hierarchical_json(ws, json_output_file, issues, start_version="", end
 
         # Find end column index based on end_version
         if end_version in (None, ""):
-            end_col = last_col + 1  # +1 for range() exclusivity
+            end_col = last_col-1
             logging.debug(f"Using default end column: {end_col}")
         else:
             if end_version in version_row:
-                end_col = version_row.index(end_version) + 4 + 1  # +4 for column offset, +1 for range() exclusivity
+                end_col = version_row.index(end_version) + 4  # +4 for column offset
                 logging.debug(f"End version '{end_version}' found at column {end_col}")
             else:
                 print(f">> End version '{end_version}' not found in Version Row")
@@ -80,38 +88,43 @@ def create_hierarchical_json(ws, json_output_file, issues, start_version="", end
             logging.error("start_version must be less than end_version")
             return False
 
-        logging.info(f"Processing rows {3} to {last_row}, columns {start_col} to {end_col - 1}")
+        logging.info(f"Processing rows {3} to {last_row}, columns {start_col} to {end_col}")
 
         # Process each data row (starting from row 3)
         for row in range(3, last_row + 1):
-            # Extract tech, nodetype, nodename from columns 1, 2, 3
+            # Extract tech, node_type, node_version from columns 1, 2, 3
             tech = ws.cell(row=row, column=1).value
-            nodetype = ws.cell(row=row, column=2).value
-            nodename = ws.cell(row=row, column=3).value
+            node_type = ws.cell(row=row, column=2).value
+            node_version = ws.cell(row=row, column=3).value
 
             # Clean and validate values
             tech = str(tech).strip() if tech is not None else ""
-            nodetype = str(nodetype).strip() if nodetype is not None else ""
-            nodename = str(nodename).strip() if nodename is not None else ""
+            node_type = str(node_type).strip() if node_type is not None else ""
+            node_version = str(node_version).strip() if node_version is not None else ""
 
             # Skip rows with missing required data
-            if not tech or not nodetype or not nodename:
-                issues['skipped_rows_during_json_creation'].append(row)
+            if (
+                    tech in ("",None) or
+                    node_type in ("",None) or
+                    node_version in ("",None) or
+                    tech == node_type == node_version
+            ):
                 logging.warning(
-                    f"Skipping incomplete row {row}: tech='{tech}', nodetype='{nodetype}', nodename='{nodename}'")
+                    f"Skipping incomplete row {row}: tech='{tech}', node_type='{node_type}', node_version='{node_version}'")
+                skipped_rows_for_json.append(row)
                 continue  # Skip incomplete rows
 
             # Extract supported nodes from version columns within range
-            supported_nodes = []
-            for col in range(start_col, end_col):  # exclude last column
+            supported_nodes = dict()
+            for col in range(start_col, end_col+1):  # exclude last column
                 val = ws.cell(row=row, column=col).value
                 if val not in (None, ""):
-                    supported_nodes.append(str(ws.cell(row=2, column=col).value))
+                    supported_nodes.update({str(ws.cell(row=2, column=col).value):val})
 
-            logging.debug(f"Row {row}: {tech}/{nodetype}/{nodename} supports {len(supported_nodes)} versions")
+            logging.debug(f"Row {row}: {tech}/{node_type}/{node_version} supports {len(supported_nodes)} versions")
 
             # Build nested dictionary structure
-            data.setdefault(tech, {}).setdefault(nodetype, {})[nodename] = supported_nodes
+            data.setdefault(tech, {}).setdefault(node_type, {})[node_version] = supported_nodes
 
         # Write JSON to file with proper encoding
         with open(json_output_file, 'w', encoding='utf-8') as f:
@@ -123,7 +136,6 @@ def create_hierarchical_json(ws, json_output_file, issues, start_version="", end
         print(f">> Function:{create_hierarchical_json.__name__}, Error: {str(e)}")
         logging.error(f"Function:{create_hierarchical_json.__name__}, Error: {str(e)}")
         return False
-
 
 def get_last_row_with_value(ws):
     """Find the last row containing any non-empty value."""
@@ -146,18 +158,18 @@ def get_last_col_with_value(ws):
 
 
 def remove_node_header(ws, issues):
-    """Remove rows where all three main columns have identical values or empty nodetype/nodename."""
+    """Remove rows where all three main columns have identical values or empty node_type/node_version."""
     logging.info("Starting node header removal")
     last_row = get_last_row_with_value(ws)
     for index in range(3, last_row + 1):
         cell1 = ws.cell(row=index, column=1).value  # tech
-        cell2 = ws.cell(row=index, column=2).value  # nodetype
-        cell3 = ws.cell(row=index, column=3).value  # nodename
+        cell2 = ws.cell(row=index, column=2).value  # node_type
+        cell3 = ws.cell(row=index, column=3).value  # node_version
 
-        # Delete row if all three values are identical or if nodetype/nodename are empty
+        # Delete row if all three values are identical or if node_type/node_version are empty
         if (cell1 == cell2 == cell3) or (cell2 in (None, "") and cell3 in (None, "")):
             issues['removed_header_rows'].append(index)
-            logging.debug(f"Removing header row {index}: tech='{cell1}', nodetype='{cell2}', nodename='{cell3}'")
+            logging.debug(f"Removing header row {index}: tech='{cell1}', node_type='{cell2}', node_version='{cell3}'")
             ws.delete_rows(index)
     logging.info(f"Node header removal completed. Removed {len(issues['removed_header_rows'])} rows")
     return True
@@ -168,7 +180,7 @@ def highlight_empty_cell(ws, issues):
     logging.info("Starting empty cell highlighting")
     last_row = get_last_row_with_value(ws)
 
-    # Check columns 1, 2, 3 (tech, nodetype, nodename) for empty cells
+    # Check columns 1, 2, 3 (tech, node_type, node_version) for empty cells
     for col in (1, 2, 3):
         for row in range(3, last_row + 1):
             val = ws.cell(row=row, column=col).value
@@ -332,15 +344,15 @@ def processing_excel(*file_info):
             return False
 
         # Step 2: Remove unnecessary node header rows
-        remove_node_header_status = remove_node_header(ws, issues)
-        if remove_node_header_status:
-            print(f">> Remove node header done")
-            logging.info("Node header removal completed successfully")
-        else:
-            print(f">> Remove node header failed")
-            logging.error("Node header removal failed")
-            return False
-
+        # remove_node_header_status = remove_node_header(ws, issues)
+        # if remove_node_header_status:
+        #     print(f">> Remove node header done")
+        #     logging.info("Node header removal completed successfully")
+        # else:
+        #     print(f">> Remove node header failed")
+        #     logging.error("Node header removal failed")
+        #     return False
+        #
         # Step 3: Highlight empty cells in critical columns and header rows
         highlight_empty_cell_status = highlight_empty_cell(ws, issues)
         if highlight_empty_cell_status:
@@ -460,7 +472,8 @@ if __name__ == "__main__":
     issues = {'merged_empty_cells': [],  # Track empty merged cell ranges
               'empty_cells_after_unmerge': [],  # Track empty cells found during processing
               'removed_header_rows': [],  # Track removed header row indices
-              'skipped_rows_during_json_creation': []}  # Track skipped rows during JSON creation
+              'skipped_incomplete_rows_for_json_creation': [],}  # Track skipped rows during JSON creation
+    skipped_rows_for_json=[]
 
     # Run main processing pipeline for the Excel file
     status = processing_excel(input_file_name, sheet_name, output_file_name, issues)
@@ -484,9 +497,13 @@ if __name__ == "__main__":
                 json_output_file = os.path.join(output_dir, os.path.basename(args.json))
 
             json_status = create_hierarchical_json(load_workbook(output_file_name)[sheet_name], json_output_file,
-                                                   issues, args.start_version, args.end_version)
+                                                   skipped_rows_for_json, args.start_version, args.end_version)
             if json_status:
                 print(f"✅ Output JSON created: '{json_output_file}'")
+                print("")
+                print("⚠️ SKIPPED ROWS FOR JSON CREATION:")
+                print("●", "SKIPPED ROWS :")
+                print(skipped_rows_for_json)
             else:
                 print(f"❌ Failed to create JSON file")
     else:
