@@ -122,16 +122,16 @@ def create_hierarchical_json(
                 val = ws.cell(row=row, column=col).value
                 if val not in (None, ""):
                     supported_nodes[str(ws.cell(row=2, column=col).value)] = val
-            else:
-                if comments not in (None, ""):
-                    supported_nodes[str(ws.cell(row=2, column=last_col).value)] = comments
 
             logging.debug(
                 f"Row {row}: {tech}/{node_type}/{node_version} supports {len(supported_nodes)} versions"
             )
 
             # Build nested dictionary structure
-            data.setdefault(tech, {}).setdefault(node_type, {})[node_version] = supported_nodes
+            if len(supported_nodes) > 0:
+                if comments not in (None, ""):
+                    supported_nodes[str(ws.cell(row=2, column=last_col).value)] = comments
+                data.setdefault(tech, {}).setdefault(node_type, {})[node_version] = supported_nodes
 
         # Write JSON to file with proper encoding
         with open(json_output_file, 'w', encoding='utf-8') as f:

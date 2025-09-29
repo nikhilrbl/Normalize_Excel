@@ -5,7 +5,7 @@ from .excel_parser import (
     formatting,
     highlight_unusable_rows,
     remove_node_header,
-    highlight_empty_cell,
+    highlight_empty_cell_in_row2,
     unmerge_and_fill,
     validate_header_count
 )

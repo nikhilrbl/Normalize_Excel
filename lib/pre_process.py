@@ -6,7 +6,12 @@
 import os
 import logging
 from openpyxl import load_workbook
-from lib.excel_parser import validate_header_count, unmerge_and_fill, highlight_empty_cell, highlight_unusable_rows ,formatting
+from lib.excel_parser import (validate_header_count,
+                              unmerge_and_fill,
+                              highlight_empty_cell_in_row2,
+                              highlight_unusable_rows,
+                              highlight_merged_empty_cells,
+                              formatting)
 
 
 # ==============================================================
@@ -56,22 +61,30 @@ def processing_excel(input_file, sheet_name, output_file, issues):
         logging.info("Cell unmerging completed successfully")
 
         # Step 2: Highlight empty cells
-        if not highlight_empty_cell(ws, issues):
-            print(">> Empty cell highlighting failed")
-            logging.error("Empty cell highlighting failed")
+        if not highlight_empty_cell_in_row2(ws, issues):
+            print(">> Empty cell highlighting in Row2 failed")
+            logging.error("Empty cell highlighting in Row2 failed")
             return False
-        print(">> Empty cell highlighting completed")
-        logging.info("Empty cell highlighting completed successfully")
+        print(">> Empty cell highlighting in Row2 completed")
+        logging.info("Empty cell highlighting completed in Row2 successfully")
 
         # Step 3: Highlight unusable / node header rows
         if not highlight_unusable_rows(ws, issues):
-            print(">> Unusable / node header row highlighting failed")
-            logging.error("Unusable / node header row highlighting failed")
+            print(">> Unusable / incomplete row highlighting failed")
+            logging.error("Unusable / incomplete row highlighting failed")
             return False
-        print(">> Unusable / node header row highlighting completed")
-        logging.info("Unusable / node header row highlighting completed successfully")
+        print(">> Unusable / incomplete row highlighting completed")
+        logging.info("Unusable / incomplete row highlighting completed successfully")
 
-        # Step 4: Apply formatting
+        # Step 4: Highlight merged empty cells in previously merged ranges
+        if not highlight_merged_empty_cells(ws, issues):
+            print(">> Highlighting merged empty cells from previously merged ranges failed")
+            logging.error("Highlighting merged empty cells from previously merged ranges failed")
+            return False
+        print(">> Highlighting merged empty cells from previously merged ranges completed successfully")
+        logging.info("Highlighting merged empty cells from previously merged ranges completed successfully")
+
+        # Step 5: Apply formatting
         if not formatting(ws):
             print(">> Cell formatting failed")
             logging.error("Cell formatting failed")

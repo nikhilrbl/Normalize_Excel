@@ -52,6 +52,29 @@ def formatting(ws):
         return False
 
 
+def highlight_merged_empty_cells(ws, issues):
+    """
+    Highlight all merged cells that were empty before unmerging with red fill.
+    Uses the merged_empty_cells recorded in issues dict.
+    """
+    try:
+        logging.info("Starting highlighting of merged empty cells")
+
+        for merge_range in issues.get('merged_empty_cells', []):
+            for row in ws[merge_range.coord]:
+                for cell in row:
+                    cell.fill = red_fill
+            logging.debug(f"Highlighted empty merged cell range: {merge_range}")
+
+        logging.info(f"Highlighted {len(issues.get('merged_empty_cells', []))} merged empty cell ranges")
+        return True
+
+    except Exception as e:
+        print(f">> Function:{highlight_merged_empty_cells.__name__}, Error: {str(e)}")
+        logging.error(f"Function:{highlight_merged_empty_cells.__name__}, Error: {str(e)}")
+        return False
+
+
 def remove_node_header(ws, issues):
     """Remove rows where all three main columns have identical values or empty node_type/node_version."""
     try:
@@ -78,6 +101,7 @@ def remove_node_header(ws, issues):
         logging.error(f"Function:{remove_node_header.__name__}, Error processing file: {str(e)}")
         return False
 
+
 def highlight_unusable_rows(ws, issues):
     """
     Highlight rows based on values in Col1, Col2, Col3:
@@ -88,7 +112,6 @@ def highlight_unusable_rows(ws, issues):
     """
     unusable_rows = []
     incomplete_rows = []
-    node_header_rows = []
 
     try:
         last_col = get_last_col_with_value(ws)
@@ -113,7 +136,7 @@ def highlight_unusable_rows(ws, issues):
 
                 elif values[0] not in (None, "") and values[0] == values[1] == values[2]:
                     # Case 3: all same value -> header row
-                    node_header_rows.append(row)
+                    unusable_rows.append(row)
                     for col in range(1, last_col + 1):
                         ws.cell(row=row, column=col).fill = light_red_fill
                     logging.debug(f"Row {row} node header -> highlighted full row (light red)")
@@ -138,7 +161,6 @@ def highlight_unusable_rows(ws, issues):
         # Update issues dictionary
         issues['unusable_rows'] = unusable_rows
         issues['incomplete_rows'] = incomplete_rows
-        issues['node_header_rows'] = node_header_rows
 
         return True
 
@@ -147,10 +169,10 @@ def highlight_unusable_rows(ws, issues):
         return False
 
 
-def highlight_empty_cell(ws, issues):
+def highlight_empty_cell_in_row2(ws, issues):
     """Highlight empty cells in critical columns/rows with red fill."""
     try:
-        logging.info("Starting empty cell highlighting")
+        logging.info("Starting empty cell highlighting in Row2")
         last_row = get_last_row_with_value(ws)
 
         # Check rows 1, 2 (headers) in version columns for empty cells
@@ -165,39 +187,33 @@ def highlight_empty_cell(ws, issues):
                         f"Highlighted empty ENM Version Row2 cell at {ws.cell(row=row, column=col).coordinate}"
                     )
 
-        # # Check columns 1, 2, 3 (tech, node_type, node_version) for empty cells
-        # for col in (1, 2, 3):
-        #     for row in range(3, last_row + 1):
-        #         val = ws.cell(row=row, column=col).value
-        #         if val is None or str(val).strip() == "":
-        #             ws.cell(row=row, column=col).fill = red_fill
-        #             issues['empty_cells_after_unmerge'].append(ws.cell(row=row, column=col).coordinate)
-        #             logging.debug(f"Highlighted empty cell at {ws.cell(row=row, column=col).coordinate}")
-
-        # total = len(issues['empty_cells_after_unmerge']) + len(issues['empty_cell_in_enm_version_row2'])
         total = len(issues['empty_cell_in_enm_version_row2'])
-        logging.info(f"Empty cell highlighting completed. Highlighted {total} cells")
+        logging.info(f"Empty cell highlighting in Row2 completed. Highlighted {total} cells")
         return True
 
     except Exception as e:
-        print(f">> Function:{highlight_empty_cell.__name__}, Error processing file: {str(e)}")
-        logging.error(f"Function:{highlight_empty_cell.__name__}, Error processing file: {str(e)}")
+        print(f">> Function:{highlight_empty_cell_in_row2.__name__}, Error processing file: {str(e)}")
+        logging.error(f"Function:{highlight_empty_cell_in_row2.__name__}, Error processing file: {str(e)}")
         return False
 
 
 def unmerge_and_fill(ws, issues):
-    """Unmerge all merged cells and fill with original value or highlight if empty."""
+    """
+    Unmerge all merged cells and fill with original value.
+    Record empty merged cells in issues['merged_empty_cells'].
+    """
     try:
         logging.info("Starting cell unmerging")
 
         merged_count = len(list(ws.merged_cells.ranges))
         logging.debug(f"Found {merged_count} merged cell ranges")
 
-        # Iterate over all merged cell ranges (create list copy to avoid modification during iteration)
         for merge_range in list(ws.merged_cells.ranges):
             # Extract the top-left cell value of the merged range
             cell_value = ws[merge_range.coord.split(":")[0]].value
-            if cell_value is None:
+
+            # Record if empty
+            if cell_value in (None, ""):
                 issues['merged_empty_cells'].append(merge_range)
                 logging.debug(f"Empty merged cell range found: {merge_range}")
 
@@ -208,10 +224,7 @@ def unmerge_and_fill(ws, issues):
             # Fill each cell in the unmerged range
             for row in ws[merge_range.coord]:
                 for cell in row:
-                    if cell_value is None:
-                        cell.fill = red_fill  # Highlight empty merged cells
-                    else:
-                        cell.value = cell_value  # Copy merged value to all cells
+                    cell.value = cell_value  # Copy merged value to all cells (None if empty)
 
         logging.info(f"Cell unmerging completed. Processed {merged_count} merged ranges")
         return True
