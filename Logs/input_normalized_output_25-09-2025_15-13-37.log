@@ -1,0 +1,577 @@
+2025-09-25 15:13:37,952 - INFO - Logging enabled. Log file: Logs\input_normalized_output_25-09-2025_15-13-37.log
+2025-09-25 15:13:37,954 - INFO - Starting Excel processing: input.xlsx -> Output\input_normalized_output.xlsx
+2025-09-25 15:13:38,932 - DEBUG - Workbook loaded successfully
+2025-09-25 15:13:38,932 - DEBUG - Worksheet 'Node Version Planner' selected
+2025-09-25 15:13:38,932 - INFO - Starting worksheet validation
+2025-09-25 15:13:38,944 - DEBUG - Last column with value: 44
+2025-09-25 15:13:39,559 - DEBUG - Last row with value: 1910
+2025-09-25 15:13:39,560 - DEBUG - Worksheet dimensions: 44 columns, 1910 rows
+2025-09-25 15:13:39,560 - INFO - Worksheet validation passed: 44 columns, 1910 rows
+2025-09-25 15:13:39,560 - INFO - Worksheet validation completed successfully
+2025-09-25 15:13:39,560 - INFO - Starting cell unmerging
+2025-09-25 15:13:39,560 - DEBUG - Found 232 merged cell ranges
+2025-09-25 15:13:39,560 - DEBUG - Unmerged range: D776:AO778
+2025-09-25 15:13:39,561 - DEBUG - Unmerged range: D818:AO821
+2025-09-25 15:13:39,563 - DEBUG - Unmerged range: B1908:B1910
+2025-09-25 15:13:39,563 - DEBUG - Unmerged range: B1799:B1811
+2025-09-25 15:13:39,563 - DEBUG - Unmerged range: B193:B209
+2025-09-25 15:13:39,563 - DEBUG - Unmerged range: B1578:B1579
+2025-09-25 15:13:39,564 - DEBUG - Unmerged range: D1195:AO1195
+2025-09-25 15:13:39,564 - DEBUG - Unmerged range: A362:AO362
+2025-09-25 15:13:39,564 - DEBUG - Unmerged range: B1701:B1722
+2025-09-25 15:13:39,564 - DEBUG - Unmerged range: B1241:B1273
+2025-09-25 15:13:39,564 - DEBUG - Unmerged range: D896:AO897
+2025-09-25 15:13:39,564 - DEBUG - Unmerged range: D1027:AO1030
+2025-09-25 15:13:39,565 - DEBUG - Unmerged range: AR568:AR571
+2025-09-25 15:13:39,565 - DEBUG - Unmerged range: B1672:B1700
+2025-09-25 15:13:39,565 - DEBUG - Unmerged range: B344:B361
+2025-09-25 15:13:39,565 - DEBUG - Unmerged range: B189:B191
+2025-09-25 15:13:39,565 - DEBUG - Unmerged range: D626:AO629
+2025-09-25 15:13:39,566 - DEBUG - Unmerged range: B1498:B1530
+2025-09-25 15:13:39,566 - DEBUG - Unmerged range: D950:AO955
+2025-09-25 15:13:39,567 - DEBUG - Unmerged range: B1019:B1026
+2025-09-25 15:13:39,567 - DEBUG - Unmerged range: D691:AO694
+2025-09-25 15:13:39,567 - DEBUG - Unmerged range: D89:AO95
+2025-09-25 15:13:39,568 - DEBUG - Unmerged range: D1184:AO1188
+2025-09-25 15:13:39,568 - DEBUG - Unmerged range: A540:AO540
+2025-09-25 15:13:39,569 - DEBUG - Unmerged range: B293:B316
+2025-09-25 15:13:39,569 - DEBUG - Unmerged range: D1196:AO1197
+2025-09-25 15:13:39,569 - DEBUG - Unmerged range: B1552:B1576
+2025-09-25 15:13:39,569 - DEBUG - Unmerged range: B1061:B1063
+2025-09-25 15:13:39,569 - DEBUG - Unmerged range: B968:B981
+2025-09-25 15:13:39,569 - DEBUG - Unmerged range: B521:B539
+2025-09-25 15:13:39,569 - DEBUG - Unmerged range: B130:B139
+2025-09-25 15:13:39,570 - DEBUG - Unmerged range: A1194:AO1194
+2025-09-25 15:13:39,570 - DEBUG - Unmerged range: A1065:A1191
+2025-09-25 15:13:39,570 - DEBUG - Unmerged range: B1037:B1058
+2025-09-25 15:13:39,570 - DEBUG - Unmerged range: B1237:B1238
+2025-09-25 15:13:39,570 - DEBUG - Unmerged range: B186:B187
+2025-09-25 15:13:39,570 - DEBUG - Unmerged range: B896:B924
+2025-09-25 15:13:39,571 - DEBUG - Unmerged range: AR695:AR696
+2025-09-25 15:13:39,571 - DEBUG - Unmerged range: A501:AO501
+2025-09-25 15:13:39,571 - DEBUG - Unmerged range: B1470:B1497
+2025-09-25 15:13:39,571 - DEBUG - Unmerged range: W672:AQ672
+2025-09-25 15:13:39,571 - DEBUG - Unmerged range: B1131:B1133
+2025-09-25 15:13:39,571 - DEBUG - Unmerged range: B1147:B1163
+2025-09-25 15:13:39,571 - DEBUG - Unmerged range: B618:B625
+2025-09-25 15:13:39,572 - DEBUG - Unmerged range: D566:AO566
+2025-09-25 15:13:39,572 - DEBUG - Unmerged range: D683:AO688
+2025-09-25 15:13:39,573 - DEBUG - Unmerged range: D695:AO697
+2025-09-25 15:13:39,573 - DEBUG - Unmerged range: B140:B146
+2025-09-25 15:13:39,573 - DEBUG - Unmerged range: D822:AO824
+2025-09-25 15:13:39,574 - DEBUG - Unmerged range: A853:AO853
+2025-09-25 15:13:39,574 - DEBUG - Unmerged range: D1134:AO1135
+2025-09-25 15:13:39,574 - DEBUG - Unmerged range: B1812:B1824
+2025-09-25 15:13:39,575 - DEBUG - Unmerged range: B1434:B1461
+2025-09-25 15:13:39,575 - DEBUG - Unmerged range: B472:B490
+2025-09-25 15:13:39,575 - DEBUG - Unmerged range: D730:AO730
+2025-09-25 15:13:39,575 - DEBUG - Unmerged range: B184:B185
+2025-09-25 15:13:39,576 - DEBUG - Unmerged range: B854:B874
+2025-09-25 15:13:39,576 - DEBUG - Unmerged range: D702:AO702
+2025-09-25 15:13:39,576 - DEBUG - Unmerged range: A217:A318
+2025-09-25 15:13:39,576 - DEBUG - Unmerged range: B1222:B1235
+2025-09-25 15:13:39,576 - DEBUG - Unmerged range: A1195:A1197
+2025-09-25 15:13:39,577 - DEBUG - Unmerged range: B950:B960
+2025-09-25 15:13:39,577 - DEBUG - Unmerged range: A541:A590
+2025-09-25 15:13:39,577 - DEBUG - Unmerged range: B673:B677
+2025-09-25 15:13:39,577 - DEBUG - Unmerged range: B1467:B1469
+2025-09-25 15:13:39,578 - DEBUG - Unmerged range: B1164:B1182
+2025-09-25 15:13:39,578 - DEBUG - Unmerged range: D1183:AO1183
+2025-09-25 15:13:39,578 - DEBUG - Unmerged range: B1771:B1773
+2025-09-25 15:13:39,578 - DEBUG - Unmerged range: B1905:B1907
+2025-09-25 15:13:39,578 - DEBUG - Unmerged range: B403:B421
+2025-09-25 15:13:39,579 - DEBUG - Unmerged range: B210:B214
+2025-09-25 15:13:39,579 - DEBUG - Empty merged cell range found: A592:A702
+2025-09-25 15:13:39,579 - DEBUG - Unmerged range: A592:A702
+2025-09-25 15:13:39,580 - DEBUG - Unmerged range: A1007:A1063
+2025-09-25 15:13:39,581 - DEBUG - Empty merged cell range found: B3:C3
+2025-09-25 15:13:39,581 - DEBUG - Unmerged range: B3:C3
+2025-09-25 15:13:39,581 - DEBUG - Unmerged range: D769:AO769
+2025-09-25 15:13:39,582 - DEBUG - Unmerged range: U706:AQ706
+2025-09-25 15:13:39,582 - DEBUG - Unmerged range: D1124:AO1124
+2025-09-25 15:13:39,582 - DEBUG - Unmerged range: B1192:B1193
+2025-09-25 15:13:39,582 - DEBUG - Unmerged range: B1550:B1551
+2025-09-25 15:13:39,582 - DEBUG - Unmerged range: D700:AO701
+2025-09-25 15:13:39,583 - DEBUG - Unmerged range: D982:AO982
+2025-09-25 15:13:39,583 - DEBUG - Unmerged range: A363:A430
+2025-09-25 15:13:39,583 - DEBUG - Unmerged range: B1531:B1547
+2025-09-25 15:13:39,583 - DEBUG - Unmerged range: D699:AO699
+2025-09-25 15:13:39,583 - DEBUG - Unmerged range: A1204:AO1204
+2025-09-25 15:13:39,584 - DEBUG - Unmerged range: B592:B608
+2025-09-25 15:13:39,584 - DEBUG - Unmerged range: B709:B729
+2025-09-25 15:13:39,585 - DEBUG - Unmerged range: D760:AO764
+2025-09-25 15:13:39,585 - DEBUG - Unmerged range: B1065:B1084
+2025-09-25 15:13:39,586 - DEBUG - Unmerged range: D748:AO759
+2025-09-25 15:13:39,587 - DEBUG - Unmerged range: B1305:B1334
+2025-09-25 15:13:39,587 - DEBUG - Unmerged range: B691:B694
+2025-09-25 15:13:39,587 - DEBUG - Unmerged range: D698:AO698
+2025-09-25 15:13:39,588 - DEBUG - Unmerged range: D609:AO613
+2025-09-25 15:13:39,588 - DEBUG - Unmerged range: B748:B759
+2025-09-25 15:13:39,588 - DEBUG - Unmerged range: B822:B851
+2025-09-25 15:13:39,589 - DEBUG - Unmerged range: B1642:B1671
+2025-09-25 15:13:39,589 - DEBUG - Unmerged range: B1199:B1201
+2025-09-25 15:13:39,589 - DEBUG - Unmerged range: AR93:AR95
+2025-09-25 15:13:39,589 - DEBUG - Unmerged range: B1085:B1104
+2025-09-25 15:13:39,590 - DEBUG - Unmerged range: A152:A182
+2025-09-25 15:13:39,590 - DEBUG - Unmerged range: B4:B45
+2025-09-25 15:13:39,590 - DEBUG - Unmerged range: B46:B83
+2025-09-25 15:13:39,591 - DEBUG - Empty merged cell range found: A147:A150
+2025-09-25 15:13:39,591 - DEBUG - Unmerged range: A147:A150
+2025-09-25 15:13:39,591 - DEBUG - Unmerged range: B1767:B1770
+2025-09-25 15:13:39,591 - DEBUG - Unmerged range: A192:AO192
+2025-09-25 15:13:39,591 - DEBUG - Unmerged range: B234:B254
+2025-09-25 15:13:39,591 - DEBUG - Unmerged range: B1777:B1780
+2025-09-25 15:13:39,592 - DEBUG - Unmerged range: B1031:B1036
+2025-09-25 15:13:39,592 - DEBUG - Unmerged range: D1037:AO1042
+2025-09-25 15:13:39,593 - DEBUG - Unmerged range: A3:A146
+2025-09-25 15:13:39,594 - DEBUG - Unmerged range: D852:AO852
+2025-09-25 15:13:39,594 - DEBUG - Unmerged range: R681:AQ681
+2025-09-25 15:13:39,595 - DEBUG - Unmerged range: A432:A499
+2025-09-25 15:13:39,596 - DEBUG - Unmerged range: D935:AO935
+2025-09-25 15:13:39,597 - DEBUG - Unmerged range: D936:AO949
+2025-09-25 15:13:39,599 - DEBUG - Unmerged range: B1105:B1123
+2025-09-25 15:13:39,600 - DEBUG - Unmerged range: B1723:B1739
+2025-09-25 15:13:39,600 - DEBUG - Unmerged range: B793:B816
+2025-09-25 15:13:39,601 - DEBUG - Unmerged range: B1274:B1304
+2025-09-25 15:13:39,601 - DEBUG - Unmerged range: B273:B292
+2025-09-25 15:13:39,602 - DEBUG - Unmerged range: A709:A852
+2025-09-25 15:13:39,606 - DEBUG - Unmerged range: B89:B129
+2025-09-25 15:13:39,607 - DEBUG - Unmerged range: B502:B520
+2025-09-25 15:13:39,607 - DEBUG - Empty merged cell range found: A189:A191
+2025-09-25 15:13:39,608 - DEBUG - Unmerged range: A189:A191
+2025-09-25 15:13:39,608 - DEBUG - Unmerged range: B683:B690
+2025-09-25 15:13:39,609 - DEBUG - Unmerged range: B769:B775
+2025-09-25 15:13:39,609 - DEBUG - Unmerged range: B1796:B1798
+2025-09-25 15:13:39,610 - DEBUG - Unmerged range: D709:AO714
+2025-09-25 15:13:39,614 - DEBUG - Unmerged range: B152:B182
+2025-09-25 15:13:39,615 - DEBUG - Unmerged range: D1059:AO1060
+2025-09-25 15:13:39,615 - DEBUG - Unmerged range: B626:B645
+2025-09-25 15:13:39,615 - DEBUG - Unmerged range: B1239:B1240
+2025-09-25 15:13:39,616 - DEBUG - Unmerged range: D502:AO502
+2025-09-25 15:13:39,616 - DEBUG - Unmerged range: B255:B272
+2025-09-25 15:13:39,616 - DEBUG - Unmerged range: AR983:AR1005
+2025-09-25 15:13:39,616 - DEBUG - Unmerged range: B1462:B1466
+2025-09-25 15:13:39,616 - DEBUG - Unmerged range: B491:B499
+2025-09-25 15:13:39,616 - DEBUG - Unmerged range: B147:B150
+2025-09-25 15:13:39,617 - DEBUG - Unmerged range: B318:B343
+2025-09-25 15:13:39,617 - DEBUG - Unmerged range: B541:B565
+2025-09-25 15:13:39,617 - DEBUG - Unmerged range: B681:B682
+2025-09-25 15:13:39,617 - DEBUG - Unmerged range: A502:A539
+2025-09-25 15:13:39,617 - DEBUG - Unmerged range: U707:AQ707
+2025-09-25 15:13:39,617 - DEBUG - Unmerged range: B1774:B1776
+2025-09-25 15:13:39,617 - DEBUG - Unmerged range: A183:AO183
+2025-09-25 15:13:39,618 - DEBUG - Unmerged range: B1202:B1203
+2025-09-25 15:13:39,618 - DEBUG - Unmerged range: A708:AO708
+2025-09-25 15:13:39,618 - DEBUG - Unmerged range: D422:AO423
+2025-09-25 15:13:39,618 - DEBUG - Unmerged range: A1006:AO1006
+2025-09-25 15:13:39,618 - DEBUG - Unmerged range: B1859:B1867
+2025-09-25 15:13:39,619 - DEBUG - Unmerged range: A854:A1005
+2025-09-25 15:13:39,619 - DEBUG - Unmerged range: B1868:B1876
+2025-09-25 15:13:39,619 - DEBUG - Unmerged range: B1335:B1367
+2025-09-25 15:13:39,619 - DEBUG - Unmerged range: B1580:B1609
+2025-09-25 15:13:39,620 - DEBUG - Unmerged range: D1061:AO1062
+2025-09-25 15:13:39,620 - DEBUG - Unmerged range: B1124:B1127
+2025-09-25 15:13:39,620 - DEBUG - Unmerged range: AR700:AR701
+2025-09-25 15:13:39,620 - DEBUG - Unmerged range: A184:A187
+2025-09-25 15:13:39,620 - DEBUG - Unmerged range: B1610:B1641
+2025-09-25 15:13:39,620 - DEBUG - Unmerged range: B1368:B1400
+2025-09-25 15:13:39,621 - DEBUG - Unmerged range: AR408:AR410
+2025-09-25 15:13:39,621 - DEBUG - Unmerged range: A1192:A1193
+2025-09-25 15:13:39,621 - DEBUG - Unmerged range: A1205:A1910
+2025-09-25 15:13:39,624 - DEBUG - Unmerged range: B734:B744
+2025-09-25 15:13:39,625 - DEBUG - Unmerged range: B731:B733
+2025-09-25 15:13:39,625 - DEBUG - Unmerged range: B678:B680
+2025-09-25 15:13:39,625 - DEBUG - Unmerged range: B875:B895
+2025-09-25 15:13:39,626 - DEBUG - Unmerged range: B936:B949
+2025-09-25 15:13:39,626 - DEBUG - Unmerged range: B1196:B1197
+2025-09-25 15:13:39,626 - DEBUG - Unmerged range: B566:B578
+2025-09-25 15:13:39,627 - DEBUG - Unmerged range: D521:AO521
+2025-09-25 15:13:39,627 - DEBUG - Unmerged range: B1877:B1886
+2025-09-25 15:13:39,627 - DEBUG - Unmerged range: B760:B768
+2025-09-25 15:13:39,627 - DEBUG - Unmerged range: B961:B967
+2025-09-25 15:13:39,627 - DEBUG - Unmerged range: B745:B747
+2025-09-25 15:13:39,628 - DEBUG - Unmerged range: B925:B934
+2025-09-25 15:13:39,628 - DEBUG - Unmerged range: A193:A216
+2025-09-25 15:13:39,628 - DEBUG - Unmerged range: AG682:AQ682
+2025-09-25 15:13:39,628 - DEBUG - Unmerged range: B1759:B1766
+2025-09-25 15:13:39,628 - DEBUG - Unmerged range: B1750:B1758
+2025-09-25 15:13:39,629 - DEBUG - Unmerged range: B1903:B1904
+2025-09-25 15:13:39,629 - DEBUG - Unmerged range: D961:AO961
+2025-09-25 15:13:39,629 - DEBUG - Unmerged range: B1059:B1060
+2025-09-25 15:13:39,629 - DEBUG - Unmerged range: AR779:AR782
+2025-09-25 15:13:39,630 - DEBUG - Unmerged range: D854:AO859
+2025-09-25 15:13:39,631 - DEBUG - Unmerged range: B646:B671
+2025-09-25 15:13:39,631 - DEBUG - Unmerged range: B1184:B1191
+2025-09-25 15:13:39,631 - DEBUG - Unmerged range: A431:AO431
+2025-09-25 15:13:39,631 - DEBUG - Empty merged cell range found: AR685:AR688
+2025-09-25 15:13:39,632 - DEBUG - Unmerged range: AR685:AR688
+2025-09-25 15:13:39,632 - DEBUG - Unmerged range: B363:B402
+2025-09-25 15:13:39,632 - DEBUG - Unmerged range: D734:AO735
+2025-09-25 15:13:39,633 - DEBUG - Unmerged range: B609:B617
+2025-09-25 15:13:39,633 - DEBUG - Unmerged range: B1205:B1221
+2025-09-25 15:13:39,633 - DEBUG - Unmerged range: B695:B697
+2025-09-25 15:13:39,634 - DEBUG - Unmerged range: B1740:B1749
+2025-09-25 15:13:39,634 - DEBUG - Unmerged range: D491:AO492
+2025-09-25 15:13:39,634 - DEBUG - Unmerged range: B1781:B1795
+2025-09-25 15:13:39,634 - DEBUG - Unmerged range: A1198:AO1198
+2025-09-25 15:13:39,635 - DEBUG - Unmerged range: B422:B430
+2025-09-25 15:13:39,635 - DEBUG - Unmerged range: D925:AO925
+2025-09-25 15:13:39,635 - DEBUG - Unmerged range: B1134:B1146
+2025-09-25 15:13:39,635 - DEBUG - Unmerged range: A344:A361
+2025-09-25 15:13:39,636 - DEBUG - Unmerged range: D745:AO747
+2025-09-25 15:13:39,636 - DEBUG - Unmerged range: V704:AQ704
+2025-09-25 15:13:39,636 - DEBUG - Unmerged range: B817:B821
+2025-09-25 15:13:39,637 - DEBUG - Unmerged range: B1825:B1845
+2025-09-25 15:13:39,637 - DEBUG - Unmerged range: D1:AQ1
+2025-09-25 15:13:39,637 - DEBUG - Unmerged range: AR794:AR816
+2025-09-25 15:13:39,637 - DEBUG - Unmerged range: B579:B590
+2025-09-25 15:13:39,638 - DEBUG - Unmerged range: AR477:AR479
+2025-09-25 15:13:39,638 - DEBUG - Unmerged range: B1848:B1858
+2025-09-25 15:13:39,638 - DEBUG - Unmerged range: U705:AQ705
+2025-09-25 15:13:39,638 - DEBUG - Unmerged range: AR968:AR971
+2025-09-25 15:13:39,638 - DEBUG - Unmerged range: B1887:B1895
+2025-09-25 15:13:39,639 - DEBUG - Unmerged range: D678:AQ680
+2025-09-25 15:13:39,639 - DEBUG - Unmerged range: B776:B792
+2025-09-25 15:13:39,640 - DEBUG - Unmerged range: B432:B471
+2025-09-25 15:13:39,640 - DEBUG - Unmerged range: A188:AO188
+2025-09-25 15:13:39,641 - DEBUG - Unmerged range: B217:B233
+2025-09-25 15:13:39,641 - DEBUG - Unmerged range: D793:AO793
+2025-09-25 15:13:39,642 - DEBUG - Unmerged range: B982:B1005
+2025-09-25 15:13:39,643 - DEBUG - Unmerged range: B1548:B1549
+2025-09-25 15:13:39,644 - DEBUG - Unmerged range: B700:B701
+2025-09-25 15:13:39,644 - DEBUG - Unmerged range: B1128:B1130
+2025-09-25 15:13:39,644 - DEBUG - Unmerged range: B1007:B1018
+2025-09-25 15:13:39,645 - DEBUG - Unmerged range: B705:B706
+2025-09-25 15:13:39,645 - DEBUG - Unmerged range: A1199:A1203
+2025-09-25 15:13:39,645 - DEBUG - Unmerged range: B1401:B1433
+2025-09-25 15:13:39,645 - DEBUG - Unmerged range: B1027:B1030
+2025-09-25 15:13:39,646 - DEBUG - Unmerged range: A591:AO591
+2025-09-25 15:13:39,646 - DEBUG - Unmerged range: A1064:AO1064
+2025-09-25 15:13:39,647 - INFO - Cell unmerging completed. Processed 232 merged ranges
+2025-09-25 15:13:39,647 - INFO - Cell unmerging completed successfully
+2025-09-25 15:13:39,647 - INFO - Starting empty cell highlighting
+2025-09-25 15:13:40,622 - DEBUG - Last row with value: 1910
+2025-09-25 15:13:40,631 - DEBUG - Last column with value: 44
+2025-09-25 15:13:40,631 - DEBUG - Highlighted empty cell at A147
+2025-09-25 15:13:40,631 - DEBUG - Highlighted empty cell at A148
+2025-09-25 15:13:40,631 - DEBUG - Highlighted empty cell at A149
+2025-09-25 15:13:40,631 - DEBUG - Highlighted empty cell at A150
+2025-09-25 15:13:40,631 - DEBUG - Highlighted empty cell at A189
+2025-09-25 15:13:40,631 - DEBUG - Highlighted empty cell at A190
+2025-09-25 15:13:40,631 - DEBUG - Highlighted empty cell at A191
+2025-09-25 15:13:40,632 - DEBUG - Highlighted empty cell at A319
+2025-09-25 15:13:40,632 - DEBUG - Highlighted empty cell at A320
+2025-09-25 15:13:40,632 - DEBUG - Highlighted empty cell at A321
+2025-09-25 15:13:40,632 - DEBUG - Highlighted empty cell at A322
+2025-09-25 15:13:40,632 - DEBUG - Highlighted empty cell at A323
+2025-09-25 15:13:40,632 - DEBUG - Highlighted empty cell at A324
+2025-09-25 15:13:40,632 - DEBUG - Highlighted empty cell at A325
+2025-09-25 15:13:40,632 - DEBUG - Highlighted empty cell at A326
+2025-09-25 15:13:40,632 - DEBUG - Highlighted empty cell at A327
+2025-09-25 15:13:40,632 - DEBUG - Highlighted empty cell at A328
+2025-09-25 15:13:40,632 - DEBUG - Highlighted empty cell at A329
+2025-09-25 15:13:40,632 - DEBUG - Highlighted empty cell at A330
+2025-09-25 15:13:40,632 - DEBUG - Highlighted empty cell at A331
+2025-09-25 15:13:40,632 - DEBUG - Highlighted empty cell at A332
+2025-09-25 15:13:40,632 - DEBUG - Highlighted empty cell at A333
+2025-09-25 15:13:40,632 - DEBUG - Highlighted empty cell at A334
+2025-09-25 15:13:40,632 - DEBUG - Highlighted empty cell at A335
+2025-09-25 15:13:40,632 - DEBUG - Highlighted empty cell at A336
+2025-09-25 15:13:40,633 - DEBUG - Highlighted empty cell at A337
+2025-09-25 15:13:40,633 - DEBUG - Highlighted empty cell at A338
+2025-09-25 15:13:40,633 - DEBUG - Highlighted empty cell at A339
+2025-09-25 15:13:40,633 - DEBUG - Highlighted empty cell at A340
+2025-09-25 15:13:40,633 - DEBUG - Highlighted empty cell at A341
+2025-09-25 15:13:40,633 - DEBUG - Highlighted empty cell at A342
+2025-09-25 15:13:40,633 - DEBUG - Highlighted empty cell at A343
+2025-09-25 15:13:40,633 - DEBUG - Highlighted empty cell at A500
+2025-09-25 15:13:40,633 - DEBUG - Highlighted empty cell at A592
+2025-09-25 15:13:40,633 - DEBUG - Highlighted empty cell at A593
+2025-09-25 15:13:40,633 - DEBUG - Highlighted empty cell at A594
+2025-09-25 15:13:40,633 - DEBUG - Highlighted empty cell at A595
+2025-09-25 15:13:40,633 - DEBUG - Highlighted empty cell at A596
+2025-09-25 15:13:40,633 - DEBUG - Highlighted empty cell at A597
+2025-09-25 15:13:40,633 - DEBUG - Highlighted empty cell at A598
+2025-09-25 15:13:40,633 - DEBUG - Highlighted empty cell at A599
+2025-09-25 15:13:40,633 - DEBUG - Highlighted empty cell at A600
+2025-09-25 15:13:40,633 - DEBUG - Highlighted empty cell at A601
+2025-09-25 15:13:40,633 - DEBUG - Highlighted empty cell at A602
+2025-09-25 15:13:40,634 - DEBUG - Highlighted empty cell at A603
+2025-09-25 15:13:40,634 - DEBUG - Highlighted empty cell at A604
+2025-09-25 15:13:40,634 - DEBUG - Highlighted empty cell at A605
+2025-09-25 15:13:40,634 - DEBUG - Highlighted empty cell at A606
+2025-09-25 15:13:40,634 - DEBUG - Highlighted empty cell at A607
+2025-09-25 15:13:40,634 - DEBUG - Highlighted empty cell at A608
+2025-09-25 15:13:40,634 - DEBUG - Highlighted empty cell at A609
+2025-09-25 15:13:40,634 - DEBUG - Highlighted empty cell at A610
+2025-09-25 15:13:40,634 - DEBUG - Highlighted empty cell at A611
+2025-09-25 15:13:40,634 - DEBUG - Highlighted empty cell at A612
+2025-09-25 15:13:40,634 - DEBUG - Highlighted empty cell at A613
+2025-09-25 15:13:40,634 - DEBUG - Highlighted empty cell at A614
+2025-09-25 15:13:40,634 - DEBUG - Highlighted empty cell at A615
+2025-09-25 15:13:40,634 - DEBUG - Highlighted empty cell at A616
+2025-09-25 15:13:40,634 - DEBUG - Highlighted empty cell at A617
+2025-09-25 15:13:40,634 - DEBUG - Highlighted empty cell at A618
+2025-09-25 15:13:40,634 - DEBUG - Highlighted empty cell at A619
+2025-09-25 15:13:40,634 - DEBUG - Highlighted empty cell at A620
+2025-09-25 15:13:40,634 - DEBUG - Highlighted empty cell at A621
+2025-09-25 15:13:40,634 - DEBUG - Highlighted empty cell at A622
+2025-09-25 15:13:40,634 - DEBUG - Highlighted empty cell at A623
+2025-09-25 15:13:40,634 - DEBUG - Highlighted empty cell at A624
+2025-09-25 15:13:40,634 - DEBUG - Highlighted empty cell at A625
+2025-09-25 15:13:40,635 - DEBUG - Highlighted empty cell at A626
+2025-09-25 15:13:40,635 - DEBUG - Highlighted empty cell at A627
+2025-09-25 15:13:40,635 - DEBUG - Highlighted empty cell at A628
+2025-09-25 15:13:40,635 - DEBUG - Highlighted empty cell at A629
+2025-09-25 15:13:40,635 - DEBUG - Highlighted empty cell at A630
+2025-09-25 15:13:40,635 - DEBUG - Highlighted empty cell at A631
+2025-09-25 15:13:40,635 - DEBUG - Highlighted empty cell at A632
+2025-09-25 15:13:40,635 - DEBUG - Highlighted empty cell at A633
+2025-09-25 15:13:40,635 - DEBUG - Highlighted empty cell at A634
+2025-09-25 15:13:40,635 - DEBUG - Highlighted empty cell at A635
+2025-09-25 15:13:40,635 - DEBUG - Highlighted empty cell at A636
+2025-09-25 15:13:40,635 - DEBUG - Highlighted empty cell at A637
+2025-09-25 15:13:40,635 - DEBUG - Highlighted empty cell at A638
+2025-09-25 15:13:40,635 - DEBUG - Highlighted empty cell at A639
+2025-09-25 15:13:40,635 - DEBUG - Highlighted empty cell at A640
+2025-09-25 15:13:40,635 - DEBUG - Highlighted empty cell at A641
+2025-09-25 15:13:40,635 - DEBUG - Highlighted empty cell at A642
+2025-09-25 15:13:40,635 - DEBUG - Highlighted empty cell at A643
+2025-09-25 15:13:40,635 - DEBUG - Highlighted empty cell at A644
+2025-09-25 15:13:40,635 - DEBUG - Highlighted empty cell at A645
+2025-09-25 15:13:40,635 - DEBUG - Highlighted empty cell at A646
+2025-09-25 15:13:40,635 - DEBUG - Highlighted empty cell at A647
+2025-09-25 15:13:40,635 - DEBUG - Highlighted empty cell at A648
+2025-09-25 15:13:40,636 - DEBUG - Highlighted empty cell at A649
+2025-09-25 15:13:40,636 - DEBUG - Highlighted empty cell at A650
+2025-09-25 15:13:40,636 - DEBUG - Highlighted empty cell at A651
+2025-09-25 15:13:40,636 - DEBUG - Highlighted empty cell at A652
+2025-09-25 15:13:40,636 - DEBUG - Highlighted empty cell at A653
+2025-09-25 15:13:40,636 - DEBUG - Highlighted empty cell at A654
+2025-09-25 15:13:40,636 - DEBUG - Highlighted empty cell at A655
+2025-09-25 15:13:40,636 - DEBUG - Highlighted empty cell at A656
+2025-09-25 15:13:40,636 - DEBUG - Highlighted empty cell at A657
+2025-09-25 15:13:40,636 - DEBUG - Highlighted empty cell at A658
+2025-09-25 15:13:40,636 - DEBUG - Highlighted empty cell at A659
+2025-09-25 15:13:40,636 - DEBUG - Highlighted empty cell at A660
+2025-09-25 15:13:40,636 - DEBUG - Highlighted empty cell at A661
+2025-09-25 15:13:40,636 - DEBUG - Highlighted empty cell at A662
+2025-09-25 15:13:40,636 - DEBUG - Highlighted empty cell at A663
+2025-09-25 15:13:40,636 - DEBUG - Highlighted empty cell at A664
+2025-09-25 15:13:40,636 - DEBUG - Highlighted empty cell at A665
+2025-09-25 15:13:40,636 - DEBUG - Highlighted empty cell at A666
+2025-09-25 15:13:40,636 - DEBUG - Highlighted empty cell at A667
+2025-09-25 15:13:40,636 - DEBUG - Highlighted empty cell at A668
+2025-09-25 15:13:40,636 - DEBUG - Highlighted empty cell at A669
+2025-09-25 15:13:40,636 - DEBUG - Highlighted empty cell at A670
+2025-09-25 15:13:40,636 - DEBUG - Highlighted empty cell at A671
+2025-09-25 15:13:40,636 - DEBUG - Highlighted empty cell at A672
+2025-09-25 15:13:40,636 - DEBUG - Highlighted empty cell at A673
+2025-09-25 15:13:40,636 - DEBUG - Highlighted empty cell at A674
+2025-09-25 15:13:40,637 - DEBUG - Highlighted empty cell at A675
+2025-09-25 15:13:40,637 - DEBUG - Highlighted empty cell at A676
+2025-09-25 15:13:40,637 - DEBUG - Highlighted empty cell at A677
+2025-09-25 15:13:40,637 - DEBUG - Highlighted empty cell at A678
+2025-09-25 15:13:40,637 - DEBUG - Highlighted empty cell at A679
+2025-09-25 15:13:40,637 - DEBUG - Highlighted empty cell at A680
+2025-09-25 15:13:40,637 - DEBUG - Highlighted empty cell at A681
+2025-09-25 15:13:40,637 - DEBUG - Highlighted empty cell at A682
+2025-09-25 15:13:40,637 - DEBUG - Highlighted empty cell at A683
+2025-09-25 15:13:40,637 - DEBUG - Highlighted empty cell at A684
+2025-09-25 15:13:40,637 - DEBUG - Highlighted empty cell at A685
+2025-09-25 15:13:40,637 - DEBUG - Highlighted empty cell at A686
+2025-09-25 15:13:40,637 - DEBUG - Highlighted empty cell at A687
+2025-09-25 15:13:40,637 - DEBUG - Highlighted empty cell at A688
+2025-09-25 15:13:40,637 - DEBUG - Highlighted empty cell at A689
+2025-09-25 15:13:40,637 - DEBUG - Highlighted empty cell at A690
+2025-09-25 15:13:40,637 - DEBUG - Highlighted empty cell at A691
+2025-09-25 15:13:40,637 - DEBUG - Highlighted empty cell at A692
+2025-09-25 15:13:40,637 - DEBUG - Highlighted empty cell at A693
+2025-09-25 15:13:40,637 - DEBUG - Highlighted empty cell at A694
+2025-09-25 15:13:40,637 - DEBUG - Highlighted empty cell at A695
+2025-09-25 15:13:40,637 - DEBUG - Highlighted empty cell at A696
+2025-09-25 15:13:40,638 - DEBUG - Highlighted empty cell at A697
+2025-09-25 15:13:40,638 - DEBUG - Highlighted empty cell at A698
+2025-09-25 15:13:40,638 - DEBUG - Highlighted empty cell at A699
+2025-09-25 15:13:40,638 - DEBUG - Highlighted empty cell at A700
+2025-09-25 15:13:40,638 - DEBUG - Highlighted empty cell at A701
+2025-09-25 15:13:40,638 - DEBUG - Highlighted empty cell at A702
+2025-09-25 15:13:40,638 - DEBUG - Highlighted empty cell at A703
+2025-09-25 15:13:40,638 - DEBUG - Highlighted empty cell at A704
+2025-09-25 15:13:40,638 - DEBUG - Highlighted empty cell at A705
+2025-09-25 15:13:40,638 - DEBUG - Highlighted empty cell at A706
+2025-09-25 15:13:40,638 - DEBUG - Highlighted empty cell at A707
+2025-09-25 15:13:40,638 - DEBUG - Highlighted empty cell at A709
+2025-09-25 15:13:40,638 - DEBUG - Highlighted empty cell at A710
+2025-09-25 15:13:40,638 - DEBUG - Highlighted empty cell at A711
+2025-09-25 15:13:40,638 - DEBUG - Highlighted empty cell at A712
+2025-09-25 15:13:40,638 - DEBUG - Highlighted empty cell at A713
+2025-09-25 15:13:40,638 - DEBUG - Highlighted empty cell at A714
+2025-09-25 15:13:40,638 - DEBUG - Highlighted empty cell at A715
+2025-09-25 15:13:40,638 - DEBUG - Highlighted empty cell at A716
+2025-09-25 15:13:40,638 - DEBUG - Highlighted empty cell at A717
+2025-09-25 15:13:40,638 - DEBUG - Highlighted empty cell at A718
+2025-09-25 15:13:40,638 - DEBUG - Highlighted empty cell at A719
+2025-09-25 15:13:40,639 - DEBUG - Highlighted empty cell at A720
+2025-09-25 15:13:40,639 - DEBUG - Highlighted empty cell at A721
+2025-09-25 15:13:40,639 - DEBUG - Highlighted empty cell at A722
+2025-09-25 15:13:40,639 - DEBUG - Highlighted empty cell at A723
+2025-09-25 15:13:40,639 - DEBUG - Highlighted empty cell at A724
+2025-09-25 15:13:40,639 - DEBUG - Highlighted empty cell at A725
+2025-09-25 15:13:40,639 - DEBUG - Highlighted empty cell at A726
+2025-09-25 15:13:40,639 - DEBUG - Highlighted empty cell at A727
+2025-09-25 15:13:40,639 - DEBUG - Highlighted empty cell at A728
+2025-09-25 15:13:40,639 - DEBUG - Highlighted empty cell at A729
+2025-09-25 15:13:40,639 - DEBUG - Highlighted empty cell at A730
+2025-09-25 15:13:40,639 - DEBUG - Highlighted empty cell at A731
+2025-09-25 15:13:40,639 - DEBUG - Highlighted empty cell at A732
+2025-09-25 15:13:40,639 - DEBUG - Highlighted empty cell at A733
+2025-09-25 15:13:40,639 - DEBUG - Highlighted empty cell at A734
+2025-09-25 15:13:40,639 - DEBUG - Highlighted empty cell at A735
+2025-09-25 15:13:40,639 - DEBUG - Highlighted empty cell at A736
+2025-09-25 15:13:40,639 - DEBUG - Highlighted empty cell at A737
+2025-09-25 15:13:40,639 - DEBUG - Highlighted empty cell at A738
+2025-09-25 15:13:40,639 - DEBUG - Highlighted empty cell at A739
+2025-09-25 15:13:40,639 - DEBUG - Highlighted empty cell at A740
+2025-09-25 15:13:40,639 - DEBUG - Highlighted empty cell at A741
+2025-09-25 15:13:40,639 - DEBUG - Highlighted empty cell at A742
+2025-09-25 15:13:40,639 - DEBUG - Highlighted empty cell at A743
+2025-09-25 15:13:40,639 - DEBUG - Highlighted empty cell at A744
+2025-09-25 15:13:40,640 - DEBUG - Highlighted empty cell at A745
+2025-09-25 15:13:40,640 - DEBUG - Highlighted empty cell at A746
+2025-09-25 15:13:40,640 - DEBUG - Highlighted empty cell at A747
+2025-09-25 15:13:40,640 - DEBUG - Highlighted empty cell at A748
+2025-09-25 15:13:40,640 - DEBUG - Highlighted empty cell at A749
+2025-09-25 15:13:40,640 - DEBUG - Highlighted empty cell at A750
+2025-09-25 15:13:40,640 - DEBUG - Highlighted empty cell at A751
+2025-09-25 15:13:40,640 - DEBUG - Highlighted empty cell at A752
+2025-09-25 15:13:40,640 - DEBUG - Highlighted empty cell at A753
+2025-09-25 15:13:40,640 - DEBUG - Highlighted empty cell at A754
+2025-09-25 15:13:40,640 - DEBUG - Highlighted empty cell at A755
+2025-09-25 15:13:40,640 - DEBUG - Highlighted empty cell at A756
+2025-09-25 15:13:40,640 - DEBUG - Highlighted empty cell at A757
+2025-09-25 15:13:40,640 - DEBUG - Highlighted empty cell at A758
+2025-09-25 15:13:40,640 - DEBUG - Highlighted empty cell at A759
+2025-09-25 15:13:40,640 - DEBUG - Highlighted empty cell at A760
+2025-09-25 15:13:40,640 - DEBUG - Highlighted empty cell at A761
+2025-09-25 15:13:40,640 - DEBUG - Highlighted empty cell at A762
+2025-09-25 15:13:40,640 - DEBUG - Highlighted empty cell at A763
+2025-09-25 15:13:40,640 - DEBUG - Highlighted empty cell at A764
+2025-09-25 15:13:40,640 - DEBUG - Highlighted empty cell at A765
+2025-09-25 15:13:40,640 - DEBUG - Highlighted empty cell at A766
+2025-09-25 15:13:40,640 - DEBUG - Highlighted empty cell at A767
+2025-09-25 15:13:40,640 - DEBUG - Highlighted empty cell at A768
+2025-09-25 15:13:40,641 - DEBUG - Highlighted empty cell at A769
+2025-09-25 15:13:40,641 - DEBUG - Highlighted empty cell at A770
+2025-09-25 15:13:40,641 - DEBUG - Highlighted empty cell at A771
+2025-09-25 15:13:40,641 - DEBUG - Highlighted empty cell at A772
+2025-09-25 15:13:40,641 - DEBUG - Highlighted empty cell at A773
+2025-09-25 15:13:40,641 - DEBUG - Highlighted empty cell at A774
+2025-09-25 15:13:40,641 - DEBUG - Highlighted empty cell at A775
+2025-09-25 15:13:40,641 - DEBUG - Highlighted empty cell at A776
+2025-09-25 15:13:40,641 - DEBUG - Highlighted empty cell at A777
+2025-09-25 15:13:40,641 - DEBUG - Highlighted empty cell at A778
+2025-09-25 15:13:40,641 - DEBUG - Highlighted empty cell at A779
+2025-09-25 15:13:40,641 - DEBUG - Highlighted empty cell at A780
+2025-09-25 15:13:40,641 - DEBUG - Highlighted empty cell at A781
+2025-09-25 15:13:40,641 - DEBUG - Highlighted empty cell at A782
+2025-09-25 15:13:40,641 - DEBUG - Highlighted empty cell at A783
+2025-09-25 15:13:40,641 - DEBUG - Highlighted empty cell at A784
+2025-09-25 15:13:40,641 - DEBUG - Highlighted empty cell at A785
+2025-09-25 15:13:40,641 - DEBUG - Highlighted empty cell at A786
+2025-09-25 15:13:40,641 - DEBUG - Highlighted empty cell at A787
+2025-09-25 15:13:40,641 - DEBUG - Highlighted empty cell at A788
+2025-09-25 15:13:40,641 - DEBUG - Highlighted empty cell at A789
+2025-09-25 15:13:40,642 - DEBUG - Highlighted empty cell at A790
+2025-09-25 15:13:40,642 - DEBUG - Highlighted empty cell at A791
+2025-09-25 15:13:40,642 - DEBUG - Highlighted empty cell at A792
+2025-09-25 15:13:40,642 - DEBUG - Highlighted empty cell at A793
+2025-09-25 15:13:40,642 - DEBUG - Highlighted empty cell at A794
+2025-09-25 15:13:40,642 - DEBUG - Highlighted empty cell at A795
+2025-09-25 15:13:40,642 - DEBUG - Highlighted empty cell at A796
+2025-09-25 15:13:40,642 - DEBUG - Highlighted empty cell at A797
+2025-09-25 15:13:40,642 - DEBUG - Highlighted empty cell at A798
+2025-09-25 15:13:40,642 - DEBUG - Highlighted empty cell at A799
+2025-09-25 15:13:40,642 - DEBUG - Highlighted empty cell at A800
+2025-09-25 15:13:40,642 - DEBUG - Highlighted empty cell at A801
+2025-09-25 15:13:40,642 - DEBUG - Highlighted empty cell at A802
+2025-09-25 15:13:40,642 - DEBUG - Highlighted empty cell at A803
+2025-09-25 15:13:40,642 - DEBUG - Highlighted empty cell at A804
+2025-09-25 15:13:40,642 - DEBUG - Highlighted empty cell at A805
+2025-09-25 15:13:40,642 - DEBUG - Highlighted empty cell at A806
+2025-09-25 15:13:40,642 - DEBUG - Highlighted empty cell at A807
+2025-09-25 15:13:40,642 - DEBUG - Highlighted empty cell at A808
+2025-09-25 15:13:40,642 - DEBUG - Highlighted empty cell at A809
+2025-09-25 15:13:40,642 - DEBUG - Highlighted empty cell at A810
+2025-09-25 15:13:40,642 - DEBUG - Highlighted empty cell at A811
+2025-09-25 15:13:40,642 - DEBUG - Highlighted empty cell at A812
+2025-09-25 15:13:40,643 - DEBUG - Highlighted empty cell at A813
+2025-09-25 15:13:40,643 - DEBUG - Highlighted empty cell at A814
+2025-09-25 15:13:40,643 - DEBUG - Highlighted empty cell at A815
+2025-09-25 15:13:40,643 - DEBUG - Highlighted empty cell at A816
+2025-09-25 15:13:40,643 - DEBUG - Highlighted empty cell at A817
+2025-09-25 15:13:40,643 - DEBUG - Highlighted empty cell at A818
+2025-09-25 15:13:40,643 - DEBUG - Highlighted empty cell at A819
+2025-09-25 15:13:40,643 - DEBUG - Highlighted empty cell at A820
+2025-09-25 15:13:40,643 - DEBUG - Highlighted empty cell at A821
+2025-09-25 15:13:40,643 - DEBUG - Highlighted empty cell at A822
+2025-09-25 15:13:40,643 - DEBUG - Highlighted empty cell at A823
+2025-09-25 15:13:40,643 - DEBUG - Highlighted empty cell at A824
+2025-09-25 15:13:40,643 - DEBUG - Highlighted empty cell at A825
+2025-09-25 15:13:40,643 - DEBUG - Highlighted empty cell at A826
+2025-09-25 15:13:40,643 - DEBUG - Highlighted empty cell at A827
+2025-09-25 15:13:40,643 - DEBUG - Highlighted empty cell at A828
+2025-09-25 15:13:40,643 - DEBUG - Highlighted empty cell at A829
+2025-09-25 15:13:40,643 - DEBUG - Highlighted empty cell at A830
+2025-09-25 15:13:40,643 - DEBUG - Highlighted empty cell at A831
+2025-09-25 15:13:40,643 - DEBUG - Highlighted empty cell at A832
+2025-09-25 15:13:40,643 - DEBUG - Highlighted empty cell at A833
+2025-09-25 15:13:40,643 - DEBUG - Highlighted empty cell at A834
+2025-09-25 15:13:40,643 - DEBUG - Highlighted empty cell at A835
+2025-09-25 15:13:40,644 - DEBUG - Highlighted empty cell at A836
+2025-09-25 15:13:40,644 - DEBUG - Highlighted empty cell at A837
+2025-09-25 15:13:40,644 - DEBUG - Highlighted empty cell at A838
+2025-09-25 15:13:40,644 - DEBUG - Highlighted empty cell at A839
+2025-09-25 15:13:40,644 - DEBUG - Highlighted empty cell at A840
+2025-09-25 15:13:40,644 - DEBUG - Highlighted empty cell at A841
+2025-09-25 15:13:40,644 - DEBUG - Highlighted empty cell at A842
+2025-09-25 15:13:40,644 - DEBUG - Highlighted empty cell at A843
+2025-09-25 15:13:40,644 - DEBUG - Highlighted empty cell at A844
+2025-09-25 15:13:40,644 - DEBUG - Highlighted empty cell at A845
+2025-09-25 15:13:40,644 - DEBUG - Highlighted empty cell at A846
+2025-09-25 15:13:40,644 - DEBUG - Highlighted empty cell at A847
+2025-09-25 15:13:40,644 - DEBUG - Highlighted empty cell at A848
+2025-09-25 15:13:40,644 - DEBUG - Highlighted empty cell at A849
+2025-09-25 15:13:40,644 - DEBUG - Highlighted empty cell at A850
+2025-09-25 15:13:40,644 - DEBUG - Highlighted empty cell at A851
+2025-09-25 15:13:40,645 - DEBUG - Highlighted empty cell at A852
+2025-09-25 15:13:40,645 - DEBUG - Highlighted empty cell at B3
+2025-09-25 15:13:40,645 - DEBUG - Highlighted empty cell at B84
+2025-09-25 15:13:40,645 - DEBUG - Highlighted empty cell at B85
+2025-09-25 15:13:40,646 - DEBUG - Highlighted empty cell at B86
+2025-09-25 15:13:40,646 - DEBUG - Highlighted empty cell at B87
+2025-09-25 15:13:40,646 - DEBUG - Highlighted empty cell at B88
+2025-09-25 15:13:40,646 - DEBUG - Highlighted empty cell at B151
+2025-09-25 15:13:40,647 - DEBUG - Highlighted empty cell at C3
+2025-09-25 15:13:40,647 - DEBUG - Highlighted empty cell at C45
+2025-09-25 15:13:40,647 - DEBUG - Highlighted empty cell at C87
+2025-09-25 15:13:40,647 - DEBUG - Highlighted empty cell at C88
+2025-09-25 15:13:40,647 - DEBUG - Highlighted empty cell at C129
+2025-09-25 15:13:40,647 - DEBUG - Highlighted empty cell at C138
+2025-09-25 15:13:40,647 - DEBUG - Highlighted empty cell at C139
+2025-09-25 15:13:40,648 - DEBUG - Highlighted empty cell at C151
+2025-09-25 15:13:40,648 - DEBUG - Highlighted empty cell at C182
+2025-09-25 15:13:40,648 - DEBUG - Highlighted empty cell at C184
+2025-09-25 15:13:40,648 - DEBUG - Highlighted empty cell at C185
+2025-09-25 15:13:40,648 - DEBUG - Highlighted empty cell at C186
+2025-09-25 15:13:40,648 - DEBUG - Highlighted empty cell at C187
+2025-09-25 15:13:40,648 - DEBUG - Highlighted empty cell at C672
+2025-09-25 15:13:40,648 - DEBUG - Highlighted empty cell at C703
+2025-09-25 15:13:40,649 - DEBUG - Highlighted empty cell at C1183
+2025-09-25 15:13:40,649 - DEBUG - Highlighted empty cell at C1201
+2025-09-25 15:13:40,649 - INFO - Empty cell highlighting completed. Highlighted 317 cells
+2025-09-25 15:13:40,649 - INFO - Empty cell highlighting completed successfully
+2025-09-25 15:13:40,649 - INFO - Starting cell formatting
+2025-09-25 15:13:41,266 - INFO - Cell formatting completed. Formatted 52678 cells
+2025-09-25 15:13:41,267 - INFO - Cell formatting completed successfully
+2025-09-25 15:13:41,267 - ERROR - Permission denied accessing files: input.xlsx or Output\input_normalized_output.xlsx
