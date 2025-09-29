@@ -83,6 +83,9 @@ def main():
         'merged_empty_cells': [],
         'empty_cell_in_enm_version_row2': [],
         'empty_cells_after_unmerge': [],
+        'unusable_rows': [],
+        'incomplete_rows': [],
+        'node_header_rows': [],
         # 'removed_header_rows': []
     }
     skipped_rows_for_json = []

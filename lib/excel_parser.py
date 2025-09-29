@@ -11,6 +11,7 @@ from lib.utils import get_last_col_with_value, get_last_row_with_value
 # Cell Fill Colors
 # ================================
 red_fill = PatternFill(start_color="FF0000", end_color="FF0000", fill_type="solid")
+light_red_fill = PatternFill(start_color="FF9999", end_color="FF9999", fill_type="solid")
 yellow_fill = PatternFill(start_color="FFFF00", end_color="FFFF00", fill_type="solid")
 pink_fill = PatternFill(start_color="FFC0CB", end_color="FFC0CB", fill_type="solid")
 orange_fill = PatternFill(start_color="FFA500", end_color="FFA500", fill_type="solid")
@@ -75,6 +76,73 @@ def remove_node_header(ws, issues):
     except Exception as e:
         print(f">> Function:{remove_node_header.__name__}, Error processing file: {str(e)}")
         logging.error(f"Function:{remove_node_header.__name__}, Error processing file: {str(e)}")
+        return False
+
+def highlight_unusable_rows(ws, issues):
+    """
+    Highlight rows based on values in Col1, Col2, Col3:
+    1. If all three are empty -> highlight full row (light red) [unusable_rows].
+    2. If any filled but not all -> highlight full row (light red) + mark missing ones (dark red) [incomplete_rows].
+    3. If all three are filled with the same value -> highlight full row (light red) [node_header_rows].
+    Updates the issues dict and returns True on success, False on error.
+    """
+    unusable_rows = []
+    incomplete_rows = []
+    node_header_rows = []
+
+    try:
+        last_col = get_last_col_with_value(ws)
+
+        # Start from row 3 to skip headers
+        for row in range(3, ws.max_row + 1):
+            try:
+                col1 = ws.cell(row=row, column=1).value
+                col2 = ws.cell(row=row, column=2).value
+                col3 = ws.cell(row=row, column=3).value
+
+                # Normalize values (strip spaces if string)
+                values = [str(v).strip() if isinstance(v, str) else v for v in (col1, col2, col3)]
+
+                if all(v in (None, "") for v in values):
+                    # Case 1: all empty
+                    unusable_rows.append(row)
+                    for col in range(1, last_col + 1):
+                        ws.cell(row=row, column=col).fill = light_red_fill
+                    logging.debug(f"Row {row} unusable -> highlighted full row (light red)")
+
+                elif values[0] not in (None, "") and values[0] == values[1] == values[2]:
+                    # Case 3: all same value -> header row
+                    node_header_rows.append(row)
+                    for col in range(1, last_col + 1):
+                        ws.cell(row=row, column=col).fill = light_red_fill
+                    logging.debug(f"Row {row} node header -> highlighted full row (light red)")
+
+                elif any(v in (None, "") for v in values):
+                    # Case 2: partially empty -> highlight row and missing cells
+                    incomplete_rows.append(row)
+                    for col in range(1, last_col + 1):
+                        ws.cell(row=row, column=col).fill = light_red_fill
+                    for i, v in enumerate(values):
+                        if v in (None, ""):
+                            ws.cell(row=row, column=i + 1).fill = red_fill
+                    logging.debug(f"Row {row} partial -> row filled light red, empty Cols red")
+
+                else:
+                    # All three filled and different -> do nothing
+                    continue
+
+            except Exception as e_row:
+                logging.error(f"Error processing row {row}: {e_row}")
+
+        # Update issues dictionary
+        issues['unusable_rows'] = unusable_rows
+        issues['incomplete_rows'] = incomplete_rows
+        issues['node_header_rows'] = node_header_rows
+
+        return True
+
+    except Exception as e:
+        logging.error(f"Error in highlight_unusable_rows: {e}")
         return False
 
 

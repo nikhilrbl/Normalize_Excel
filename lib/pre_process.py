@@ -6,7 +6,7 @@
 import os
 import logging
 from openpyxl import load_workbook
-from lib.excel_parser import validate_header_count, unmerge_fill, highlight_empty_cell, formatting
+from lib.excel_parser import validate_header_count, unmerge_fill, highlight_empty_cell, highlight_unusable_rows ,formatting
 
 
 # ==============================================================
@@ -63,7 +63,15 @@ def processing_excel(input_file, sheet_name, output_file, issues):
         print(">> Empty cell highlighting completed")
         logging.info("Empty cell highlighting completed successfully")
 
-        # Step 3: Apply formatting
+        # Step 3: Highlight unusable / node header rows
+        if not highlight_unusable_rows(ws, issues):
+            print(">> Unusable / node header row highlighting failed")
+            logging.error("Unusable / node header row highlighting failed")
+            return False
+        print(">> Unusable / node header row highlighting completed")
+        logging.info("Unusable / node header row highlighting completed successfully")
+
+        # Step 4: Apply formatting
         if not formatting(ws):
             print(">> Cell formatting failed")
             logging.error("Cell formatting failed")
@@ -71,7 +79,7 @@ def processing_excel(input_file, sheet_name, output_file, issues):
         print(">> Cell formatting completed")
         logging.info("Cell formatting completed successfully")
 
-        # Step 4: Save output
+        # Step 5: Save output
         wb.save(output_file)
         wb.close()
 

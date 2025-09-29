@@ -3,6 +3,7 @@
 # Import core functions for easier access
 from .excel_parser import (
     formatting,
+    highlight_unusable_rows,
     remove_node_header,
     highlight_empty_cell,
     unmerge_fill,
