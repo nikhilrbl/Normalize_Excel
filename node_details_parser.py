@@ -70,13 +70,14 @@ def main():
     # Determine Excel output filename
     # ======================
     if args.output:
-        # Use user-provided Excel output path as-is
-        output_file_name = args.output
+        # Normalize user-provided filename
+        output_base = os.path.splitext(os.path.basename(args.output))[0]  # Remove existing extension
+        output_file_name = os.path.join(output_dir, f"{output_base}.xlsx")
     else:
         # Default Excel output: input base + timestamp
-        output_base = os.path.splitext(os.path.basename(args.input))[0]
+        input_base = os.path.splitext(os.path.basename(args.input))[0]
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        output_file_name = os.path.join(output_dir, f"{output_base}_{timestamp}.xlsx")
+        output_file_name = os.path.join(output_dir, f"{input_base}_{timestamp}.xlsx")
 
     # ======================
     # Setup Logging
@@ -115,13 +116,15 @@ def main():
     # Create JSON (if requested)
     # ======================
     if args.json:
-        if args.json is True:
-            # Default JSON name: same base as Excel, no timestamp
-            json_base = os.path.splitext(os.path.basename(output_file_name))[0]
-            json_file_name = os.path.join(output_dir, f"{json_base}.json")
-        else:
-            # User provided JSON filename
-            json_file_name = os.path.join(output_dir, args.json)
+        if args.json:
+            if args.json is True:
+                # Default JSON name: same base as Excel, no timestamp
+                json_base = os.path.splitext(os.path.basename(output_file_name))[0]
+                json_file_name = os.path.join(output_dir, f"{json_base}.json")
+            else:
+                # User provided JSON filename
+                json_base = os.path.splitext(os.path.basename(args.json))[0]  # remove any existing extension
+                json_file_name = os.path.join(output_dir, f"{json_base}.json")
 
         json_status = create_hierarchical_json(
             load_workbook(output_file_name)[args.sheetname],
