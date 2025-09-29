@@ -66,18 +66,25 @@ def main():
     output_dir = "output"
     os.makedirs(output_dir, exist_ok=True)
 
-    # Determine output Excel filename
-    output_base = os.path.splitext(os.path.basename(args.output or args.input))[0]
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_file_name = os.path.join(output_dir, f"{output_base}_{timestamp}.xlsx")
+    # ======================
+    # Determine Excel output filename
+    # ======================
+    if args.output:
+        # Use user-provided Excel output path as-is
+        output_file_name = args.output
+    else:
+        # Default Excel output: input base + timestamp
+        output_base = os.path.splitext(os.path.basename(args.input))[0]
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        output_file_name = os.path.join(output_dir, f"{output_base}_{timestamp}.xlsx")
 
     # ======================
     # Setup Logging
     # ======================
-    setup_logging(output_base, args.logging)
+    setup_logging(os.path.splitext(os.path.basename(output_file_name))[0], args.logging)
 
     # ======================
-    # Processing Excel
+    # Initialize issues dictionary
     # ======================
     issues = {
         'merged_empty_cells': [],
@@ -90,6 +97,9 @@ def main():
     }
     skipped_rows_for_json = []
 
+    # ======================
+    # Process Excel
+    # ======================
     status = processing_excel(args.input, args.sheetname, output_file_name, issues)
 
     if not status:
@@ -108,12 +118,12 @@ def main():
     # ======================
     if args.json:
         if args.json is True:
+            # Default JSON name: same base as Excel, no timestamp
             json_base = os.path.splitext(os.path.basename(output_file_name))[0]
+            json_file_name = os.path.join(output_dir, f"{json_base}.json")
         else:
-            json_base = os.path.splitext(os.path.basename(args.json))[0]
-
-        # Use same output_dir for JSON
-        json_file_name = os.path.join(output_dir, f"{json_base}_{timestamp}.json")
+            # User provided JSON filename
+            json_file_name = os.path.join(output_dir, args.json)
 
         json_status = create_hierarchical_json(
             load_workbook(output_file_name)[args.sheetname],

@@ -11,7 +11,7 @@ from lib.utils import get_last_col_with_value, get_last_row_with_value
 # Cell Fill Colors
 # ================================
 red_fill = PatternFill(start_color="FF0000", end_color="FF0000", fill_type="solid")
-light_red_fill = PatternFill(start_color="FF9999", end_color="FF9999", fill_type="solid")
+light_red_fill = PatternFill(start_color="ff6666", end_color="ff6666", fill_type="solid")
 yellow_fill = PatternFill(start_color="FFFF00", end_color="FFFF00", fill_type="solid")
 pink_fill = PatternFill(start_color="FFC0CB", end_color="FFC0CB", fill_type="solid")
 orange_fill = PatternFill(start_color="FFA500", end_color="FFA500", fill_type="solid")
@@ -92,9 +92,10 @@ def highlight_unusable_rows(ws, issues):
 
     try:
         last_col = get_last_col_with_value(ws)
+        last_row = get_last_row_with_value(ws)
 
         # Start from row 3 to skip headers
-        for row in range(3, ws.max_row + 1):
+        for row in range(3, last_row + 1):
             try:
                 col1 = ws.cell(row=row, column=1).value
                 col2 = ws.cell(row=row, column=2).value
@@ -164,16 +165,17 @@ def highlight_empty_cell(ws, issues):
                         f"Highlighted empty ENM Version Row2 cell at {ws.cell(row=row, column=col).coordinate}"
                     )
 
-        # Check columns 1, 2, 3 (tech, node_type, node_version) for empty cells
-        for col in (1, 2, 3):
-            for row in range(3, last_row + 1):
-                val = ws.cell(row=row, column=col).value
-                if val is None or str(val).strip() == "":
-                    ws.cell(row=row, column=col).fill = red_fill
-                    issues['empty_cells_after_unmerge'].append(ws.cell(row=row, column=col).coordinate)
-                    logging.debug(f"Highlighted empty cell at {ws.cell(row=row, column=col).coordinate}")
+        # # Check columns 1, 2, 3 (tech, node_type, node_version) for empty cells
+        # for col in (1, 2, 3):
+        #     for row in range(3, last_row + 1):
+        #         val = ws.cell(row=row, column=col).value
+        #         if val is None or str(val).strip() == "":
+        #             ws.cell(row=row, column=col).fill = red_fill
+        #             issues['empty_cells_after_unmerge'].append(ws.cell(row=row, column=col).coordinate)
+        #             logging.debug(f"Highlighted empty cell at {ws.cell(row=row, column=col).coordinate}")
 
-        total = len(issues['empty_cells_after_unmerge']) + len(issues['empty_cell_in_enm_version_row2'])
+        # total = len(issues['empty_cells_after_unmerge']) + len(issues['empty_cell_in_enm_version_row2'])
+        total = len(issues['empty_cell_in_enm_version_row2'])
         logging.info(f"Empty cell highlighting completed. Highlighted {total} cells")
         return True
 
@@ -183,7 +185,7 @@ def highlight_empty_cell(ws, issues):
         return False
 
 
-def unmerge_fill(ws, issues):
+def unmerge_and_fill(ws, issues):
     """Unmerge all merged cells and fill with original value or highlight if empty."""
     try:
         logging.info("Starting cell unmerging")
@@ -215,8 +217,8 @@ def unmerge_fill(ws, issues):
         return True
 
     except Exception as e:
-        print(f">> Function:{unmerge_fill.__name__}, Error processing file: {str(e)}")
-        logging.error(f"Function:{unmerge_fill.__name__}, Error processing file: {str(e)}")
+        print(f">> Function:{unmerge_and_fill.__name__}, Error processing file: {str(e)}")
+        logging.error(f"Function:{unmerge_and_fill.__name__}, Error processing file: {str(e)}")
         return False
 
 

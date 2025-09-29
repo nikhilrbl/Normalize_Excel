@@ -59,11 +59,12 @@ def setup_logging(output_base_name, log_option):
         base = os.path.splitext(os.path.basename(log_option))[0]
     else:
         # Default log filename based on output_base_name
-        base = f"{output_base_name}_log"
+        base = f"{output_base_name}"
 
     # Add timestamp
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    log_file_name = f"{base}_{timestamp}.log"
+    # timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    # log_file_name = f"{base}_{timestamp}.log"
+    log_file_name = f"{base}.log"
 
     # Full path in log folder
     log_file = os.path.join(log_dir, log_file_name)

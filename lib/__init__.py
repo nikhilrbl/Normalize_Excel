@@ -6,7 +6,7 @@ from .excel_parser import (
     highlight_unusable_rows,
     remove_node_header,
     highlight_empty_cell,
-    unmerge_fill,
+    unmerge_and_fill,
     validate_header_count
 )
 

@@ -6,7 +6,7 @@
 import os
 import logging
 from openpyxl import load_workbook
-from lib.excel_parser import validate_header_count, unmerge_fill, highlight_empty_cell, highlight_unusable_rows ,formatting
+from lib.excel_parser import validate_header_count, unmerge_and_fill, highlight_empty_cell, highlight_unusable_rows ,formatting
 
 
 # ==============================================================
@@ -48,7 +48,7 @@ def processing_excel(input_file, sheet_name, output_file, issues):
         logging.info("Worksheet validation completed successfully")
 
         # Step 1: Unmerge
-        if not unmerge_fill(ws, issues):
+        if not unmerge_and_fill(ws, issues):
             print(">> Unmerge failed")
             logging.error("Cell unmerging failed")
             return False
